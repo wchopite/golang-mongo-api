@@ -1,0 +1,18 @@
+version: '3'
+services:
+  app:
+    container_name: golang-api
+    build: .
+    ports:
+      - '1337:1337'
+    restart: always
+    environment:
+     - MONGODB_URL=mongodb://mongo:27017
+     - PORT=1337
+    links:
+      - mongo
+  mongo:
+    container_name: mongo-golang-api
+    image: mongo
+    ports:
+      - '27017:27017'
